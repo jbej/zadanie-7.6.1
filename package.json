@@ -6,13 +6,14 @@
   "scripts": {
     "test": "npm run test:html",
     "test:html": "nu-html-checker *.html",
-    "build": "npm run build:sass && npm run build:autoprefixer && npm run test",
+    "build": "npm run build:clean && npm run build:sass && npm run build:autoprefixer && npm run test",
     "build:sass": "sass --sourcemap=none --update sass:css",
     "build:autoprefixer": "autoprefixer-cli css/style.css",
+    "build:clean": "rm-rf",
     "watch": "parallelshell \"npm run watch:sass\" \"npm run watch:autoprefixer\" ",
     "watch:sass": "sass --watch sass:css",
     "watch:autoprefixer": "onchange -d 100 css/style.css -- autoprefixer-cli -o css/style.prefixed.css css/style.css",
-    "watch:browsersync":"npm run watch"
+    "watch:browsersync": "npm run watch"
   },
   "repository": {
     "type": "git",
@@ -27,9 +28,11 @@
   "homepage": "https://github.com/jbej/zadanie-7.6.1#readme",
   "dependencies": {
     "autoprefixer-cli": "^1.0.0",
+    "clean": "^4.0.2",
     "glob-run": "^0.1.6",
     "nu-html-checker": "^0.1.0",
-    "onchange": "^3.2.1"
+    "onchange": "^3.2.1",
+    "rimraf": "^2.6.2"
   },
   "devDependencies": {
     "parallelshell": "^3.0.2"
